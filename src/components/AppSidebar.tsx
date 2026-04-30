@@ -36,6 +36,11 @@ const ops: NavItem[] = [
   { title: "Analytics", url: "/app/analytics", icon: BarChart3, roles: ["owner"] },
 ];
 
+const resources: NavItem[] = [
+  { title: "Govt. Schemes", url: "/schemes", icon: Landmark },
+  { title: "Blog", url: "/blog", icon: BookOpen },
+];
+
 const bottom: NavItem[] = [
   { title: "Settings", url: "/app/settings", icon: Settings, roles: ["owner"] },
 ];
@@ -97,6 +102,7 @@ export function AppSidebar({ roles, orgName }: { roles: Role[]; orgName: string 
         {renderGroup("Main", main)}
         {renderGroup("Finance", finance)}
         {renderGroup("Operations", ops)}
+        {renderGroup("Resources", resources)}
         {renderGroup("Account", bottom)}
       </SidebarContent>
 
