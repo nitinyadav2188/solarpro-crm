@@ -2,31 +2,15 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   Sun, ArrowRight, ShieldCheck, BarChart3, Receipt, Users,
-  FolderKanban, Boxes, Zap, IndianRupee,
+  FolderKanban, Boxes, IndianRupee, Landmark, BookOpen, FileSignature,
 } from "lucide-react";
+import { PublicNav, PublicFooter } from "@/components/GovHeader";
 
 export default function Landing() {
   return (
     <div className="min-h-screen bg-background">
-      {/* Nav */}
-      <header className="sticky top-0 z-30 border-b bg-background/80 backdrop-blur">
-        <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2">
-            <div className="grid h-8 w-8 place-items-center rounded-md bg-primary text-primary-foreground"><Sun className="h-4 w-4" /></div>
-            <span className="font-display text-lg">SolarPro</span>
-            <span className="text-[10px] uppercase tracking-widest text-muted-foreground border border-border px-1.5 py-0.5 rounded ml-1 hidden sm:inline">CRM</span>
-          </Link>
-          <nav className="hidden md:flex items-center gap-6 text-sm text-muted-foreground">
-            <a href="#features" className="hover:text-foreground">Features</a>
-            <a href="#why" className="hover:text-foreground">Why SolarPro</a>
-            <a href="#pricing" className="hover:text-foreground">Pricing</a>
-          </nav>
-          <div className="flex items-center gap-2">
-            <Link to="/auth"><Button variant="ghost" size="sm">Sign in</Button></Link>
-            <Link to="/auth"><Button size="sm">Start free</Button></Link>
-          </div>
-        </div>
-      </header>
+      <PublicNav />
+
 
       {/* Hero */}
       <section className="relative overflow-hidden">
