@@ -1,7 +1,7 @@
 import { NavLink, useLocation } from "react-router-dom";
 import {
   LayoutDashboard, Users, FolderKanban, Receipt, Wallet,
-  Boxes, FileText, Landmark, BarChart3, Settings, Sun,
+  Boxes, FileText, Landmark, BarChart3, Settings, Sun, FileSignature, BookOpen,
 } from "lucide-react";
 import {
   Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent,
@@ -24,6 +24,7 @@ const main: NavItem[] = [
 ];
 
 const finance: NavItem[] = [
+  { title: "Quotations", url: "/app/quotations", icon: FileSignature, roles: ["owner", "sales", "accountant"] },
   { title: "Invoices", url: "/app/invoices", icon: Receipt, roles: ["owner", "accountant"] },
   { title: "Payments", url: "/app/payments", icon: Wallet, roles: ["owner", "accountant"] },
 ];
