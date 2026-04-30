@@ -10,10 +10,13 @@ import AppLayout from "./layouts/AppLayout";
 import Dashboard from "./pages/Dashboard";
 import Leads from "./pages/Leads";
 import Projects from "./pages/Projects";
+import Quotations from "./pages/Quotations";
 import Invoices from "./pages/Invoices";
 import Payments from "./pages/Payments";
 import Inventory from "./pages/Inventory";
 import { Documents, Compliance, Analytics, Settings } from "./pages/Stubs";
+import Blog from "./pages/Blog";
+import GovernmentSchemes from "./pages/GovernmentSchemes";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -27,10 +30,15 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/auth" element={<Auth />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<Blog />} />
+          <Route path="/schemes" element={<GovernmentSchemes />} />
+          <Route path="/schemes/:slug" element={<GovernmentSchemes />} />
           <Route path="/app" element={<AppLayout />}>
             <Route index element={<Dashboard />} />
             <Route path="leads" element={<Leads />} />
             <Route path="projects" element={<Projects />} />
+            <Route path="quotations" element={<Quotations />} />
             <Route path="invoices" element={<Invoices />} />
             <Route path="payments" element={<Payments />} />
             <Route path="inventory" element={<Inventory />} />

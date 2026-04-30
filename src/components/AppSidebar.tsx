@@ -1,7 +1,7 @@
 import { NavLink, useLocation } from "react-router-dom";
 import {
   LayoutDashboard, Users, FolderKanban, Receipt, Wallet,
-  Boxes, FileText, Landmark, BarChart3, Settings, Sun,
+  Boxes, FileText, Landmark, BarChart3, Settings, Sun, FileSignature, BookOpen,
 } from "lucide-react";
 import {
   Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent,
@@ -24,6 +24,7 @@ const main: NavItem[] = [
 ];
 
 const finance: NavItem[] = [
+  { title: "Quotations", url: "/app/quotations", icon: FileSignature, roles: ["owner", "sales", "accountant"] },
   { title: "Invoices", url: "/app/invoices", icon: Receipt, roles: ["owner", "accountant"] },
   { title: "Payments", url: "/app/payments", icon: Wallet, roles: ["owner", "accountant"] },
 ];
@@ -33,6 +34,11 @@ const ops: NavItem[] = [
   { title: "Documents", url: "/app/documents", icon: FileText },
   { title: "Compliance", url: "/app/compliance", icon: Landmark, roles: ["owner", "accountant"] },
   { title: "Analytics", url: "/app/analytics", icon: BarChart3, roles: ["owner"] },
+];
+
+const resources: NavItem[] = [
+  { title: "Govt. Schemes", url: "/schemes", icon: Landmark },
+  { title: "Blog", url: "/blog", icon: BookOpen },
 ];
 
 const bottom: NavItem[] = [
@@ -96,6 +102,7 @@ export function AppSidebar({ roles, orgName }: { roles: Role[]; orgName: string 
         {renderGroup("Main", main)}
         {renderGroup("Finance", finance)}
         {renderGroup("Operations", ops)}
+        {renderGroup("Resources", resources)}
         {renderGroup("Account", bottom)}
       </SidebarContent>
 

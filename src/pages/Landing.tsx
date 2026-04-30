@@ -2,31 +2,15 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   Sun, ArrowRight, ShieldCheck, BarChart3, Receipt, Users,
-  FolderKanban, Boxes, Zap, IndianRupee,
+  FolderKanban, Boxes, IndianRupee, Landmark, BookOpen, FileSignature,
 } from "lucide-react";
+import { PublicNav, PublicFooter } from "@/components/GovHeader";
 
 export default function Landing() {
   return (
     <div className="min-h-screen bg-background">
-      {/* Nav */}
-      <header className="sticky top-0 z-30 border-b bg-background/80 backdrop-blur">
-        <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2">
-            <div className="grid h-8 w-8 place-items-center rounded-md bg-primary text-primary-foreground"><Sun className="h-4 w-4" /></div>
-            <span className="font-display text-lg">SolarPro</span>
-            <span className="text-[10px] uppercase tracking-widest text-muted-foreground border border-border px-1.5 py-0.5 rounded ml-1 hidden sm:inline">CRM</span>
-          </Link>
-          <nav className="hidden md:flex items-center gap-6 text-sm text-muted-foreground">
-            <a href="#features" className="hover:text-foreground">Features</a>
-            <a href="#why" className="hover:text-foreground">Why SolarPro</a>
-            <a href="#pricing" className="hover:text-foreground">Pricing</a>
-          </nav>
-          <div className="flex items-center gap-2">
-            <Link to="/auth"><Button variant="ghost" size="sm">Sign in</Button></Link>
-            <Link to="/auth"><Button size="sm">Start free</Button></Link>
-          </div>
-        </div>
-      </header>
+      <PublicNav />
+
 
       {/* Hero */}
       <section className="relative overflow-hidden">
@@ -150,16 +134,24 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t py-10">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-muted-foreground">
-          <div className="flex items-center gap-2">
-            <div className="grid h-7 w-7 place-items-center rounded-md bg-primary text-primary-foreground"><Sun className="h-3.5 w-3.5" /></div>
-            <span className="font-display text-base text-foreground">SolarPro</span>
-          </div>
-          <div>© {new Date().getFullYear()} SolarPro · Made for India · ₹ INR · GST-ready</div>
+      {/* Resources tiles */}
+      <section className="py-16 bg-secondary/40 border-y">
+        <div className="max-w-7xl mx-auto px-6 grid sm:grid-cols-2 gap-5">
+          <Link to="/schemes" className="gov-card p-6 hover:shadow-md transition group">
+            <div className="grid h-10 w-10 place-items-center rounded-md bg-primary/10 text-primary mb-3"><Landmark className="h-5 w-5" /></div>
+            <h3 className="font-display text-xl group-hover:text-primary">Government Schemes Directory</h3>
+            <p className="text-sm text-muted-foreground mt-2">PM Surya Ghar, KUSUM, state subsidies — eligibility, documents, and how to apply.</p>
+          </Link>
+          <Link to="/blog" className="gov-card p-6 hover:shadow-md transition group">
+            <div className="grid h-10 w-10 place-items-center rounded-md bg-accent/15 text-accent-foreground mb-3"><BookOpen className="h-5 w-5" /></div>
+            <h3 className="font-display text-xl group-hover:text-primary">Blog & Industry Guides</h3>
+            <p className="text-sm text-muted-foreground mt-2">Practical India-specific guides on solar ROI, GST, and field sales.</p>
+          </Link>
         </div>
-      </footer>
+      </section>
+
+      <PublicFooter />
     </div>
   );
 }
+

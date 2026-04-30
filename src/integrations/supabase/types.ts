@@ -55,6 +55,54 @@ export type Database = {
           },
         ]
       }
+      blog_posts: {
+        Row: {
+          author: string | null
+          category: string | null
+          content: string
+          cover_url: string | null
+          created_at: string
+          excerpt: string | null
+          id: string
+          published: boolean
+          published_at: string
+          slug: string
+          tags: string[] | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          author?: string | null
+          category?: string | null
+          content: string
+          cover_url?: string | null
+          created_at?: string
+          excerpt?: string | null
+          id?: string
+          published?: boolean
+          published_at?: string
+          slug: string
+          tags?: string[] | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          author?: string | null
+          category?: string | null
+          content?: string
+          cover_url?: string | null
+          created_at?: string
+          excerpt?: string | null
+          id?: string
+          published?: boolean
+          published_at?: string
+          slug?: string
+          tags?: string[] | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       documents: {
         Row: {
           created_at: string
@@ -98,6 +146,63 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      government_schemes: {
+        Row: {
+          active: boolean
+          application_process: string | null
+          authority: string | null
+          created_at: string
+          description: string
+          documents_required: string | null
+          eligibility: string | null
+          id: string
+          name: string
+          official_url: string | null
+          scheme_type: string | null
+          short_description: string | null
+          slug: string
+          state: string | null
+          subsidy_details: string | null
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          application_process?: string | null
+          authority?: string | null
+          created_at?: string
+          description: string
+          documents_required?: string | null
+          eligibility?: string | null
+          id?: string
+          name: string
+          official_url?: string | null
+          scheme_type?: string | null
+          short_description?: string | null
+          slug: string
+          state?: string | null
+          subsidy_details?: string | null
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          application_process?: string | null
+          authority?: string | null
+          created_at?: string
+          description?: string
+          documents_required?: string | null
+          eligibility?: string | null
+          id?: string
+          name?: string
+          official_url?: string | null
+          scheme_type?: string | null
+          short_description?: string | null
+          slug?: string
+          state?: string | null
+          subsidy_details?: string | null
+          updated_at?: string
+        }
+        Relationships: []
       }
       inventory_items: {
         Row: {
@@ -152,6 +257,56 @@ export type Database = {
           },
         ]
       }
+      invoice_items: {
+        Row: {
+          amount: number
+          created_at: string
+          description: string
+          hsn_sac: string | null
+          id: string
+          invoice_id: string
+          org_id: string
+          position: number
+          quantity: number
+          unit: string | null
+          unit_price: number
+        }
+        Insert: {
+          amount?: number
+          created_at?: string
+          description: string
+          hsn_sac?: string | null
+          id?: string
+          invoice_id: string
+          org_id: string
+          position?: number
+          quantity?: number
+          unit?: string | null
+          unit_price?: number
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          description?: string
+          hsn_sac?: string | null
+          id?: string
+          invoice_id?: string
+          org_id?: string
+          position?: number
+          quantity?: number
+          unit?: string | null
+          unit_price?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "invoice_items_invoice_id_fkey"
+            columns: ["invoice_id"]
+            isOneToOne: false
+            referencedRelation: "invoices"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       invoices: {
         Row: {
           amount_paid: number
@@ -161,7 +316,10 @@ export type Database = {
           customer_address: string | null
           customer_gstin: string | null
           customer_name: string
+          discount: number
           due_date: string | null
+          gst_rate: number
+          gst_type: string
           id: string
           igst: number
           invoice_number: string
@@ -169,6 +327,7 @@ export type Database = {
           notes: string | null
           org_id: string
           project_id: string | null
+          quotation_id: string | null
           sgst: number
           status: Database["public"]["Enums"]["invoice_status"]
           subtotal: number
@@ -183,7 +342,10 @@ export type Database = {
           customer_address?: string | null
           customer_gstin?: string | null
           customer_name: string
+          discount?: number
           due_date?: string | null
+          gst_rate?: number
+          gst_type?: string
           id?: string
           igst?: number
           invoice_number: string
@@ -191,6 +353,7 @@ export type Database = {
           notes?: string | null
           org_id: string
           project_id?: string | null
+          quotation_id?: string | null
           sgst?: number
           status?: Database["public"]["Enums"]["invoice_status"]
           subtotal?: number
@@ -205,7 +368,10 @@ export type Database = {
           customer_address?: string | null
           customer_gstin?: string | null
           customer_name?: string
+          discount?: number
           due_date?: string | null
+          gst_rate?: number
+          gst_type?: string
           id?: string
           igst?: number
           invoice_number?: string
@@ -213,6 +379,7 @@ export type Database = {
           notes?: string | null
           org_id?: string
           project_id?: string | null
+          quotation_id?: string | null
           sgst?: number
           status?: Database["public"]["Enums"]["invoice_status"]
           subtotal?: number
@@ -558,6 +725,164 @@ export type Database = {
           },
         ]
       }
+      quotation_items: {
+        Row: {
+          amount: number
+          created_at: string
+          description: string
+          hsn_sac: string | null
+          id: string
+          org_id: string
+          position: number
+          quantity: number
+          quotation_id: string
+          unit: string | null
+          unit_price: number
+        }
+        Insert: {
+          amount?: number
+          created_at?: string
+          description: string
+          hsn_sac?: string | null
+          id?: string
+          org_id: string
+          position?: number
+          quantity?: number
+          quotation_id: string
+          unit?: string | null
+          unit_price?: number
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          description?: string
+          hsn_sac?: string | null
+          id?: string
+          org_id?: string
+          position?: number
+          quantity?: number
+          quotation_id?: string
+          unit?: string | null
+          unit_price?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "quotation_items_quotation_id_fkey"
+            columns: ["quotation_id"]
+            isOneToOne: false
+            referencedRelation: "quotations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      quotations: {
+        Row: {
+          capacity_kw: number
+          cgst: number
+          city: string | null
+          converted_invoice_id: string | null
+          created_at: string
+          created_by: string | null
+          customer_address: string | null
+          customer_email: string | null
+          customer_gstin: string | null
+          customer_name: string
+          customer_phone: string | null
+          discount: number
+          gst_rate: number
+          gst_type: string
+          id: string
+          igst: number
+          issue_date: string
+          lead_id: string | null
+          notes: string | null
+          org_id: string
+          pincode: string | null
+          project_id: string | null
+          quotation_number: string
+          sgst: number
+          state: string | null
+          status: Database["public"]["Enums"]["quotation_status"]
+          subsidy_amount: number
+          subtotal: number
+          system_type: string | null
+          terms: string | null
+          total: number
+          updated_at: string
+          valid_until: string | null
+        }
+        Insert: {
+          capacity_kw?: number
+          cgst?: number
+          city?: string | null
+          converted_invoice_id?: string | null
+          created_at?: string
+          created_by?: string | null
+          customer_address?: string | null
+          customer_email?: string | null
+          customer_gstin?: string | null
+          customer_name: string
+          customer_phone?: string | null
+          discount?: number
+          gst_rate?: number
+          gst_type?: string
+          id?: string
+          igst?: number
+          issue_date?: string
+          lead_id?: string | null
+          notes?: string | null
+          org_id: string
+          pincode?: string | null
+          project_id?: string | null
+          quotation_number: string
+          sgst?: number
+          state?: string | null
+          status?: Database["public"]["Enums"]["quotation_status"]
+          subsidy_amount?: number
+          subtotal?: number
+          system_type?: string | null
+          terms?: string | null
+          total?: number
+          updated_at?: string
+          valid_until?: string | null
+        }
+        Update: {
+          capacity_kw?: number
+          cgst?: number
+          city?: string | null
+          converted_invoice_id?: string | null
+          created_at?: string
+          created_by?: string | null
+          customer_address?: string | null
+          customer_email?: string | null
+          customer_gstin?: string | null
+          customer_name?: string
+          customer_phone?: string | null
+          discount?: number
+          gst_rate?: number
+          gst_type?: string
+          id?: string
+          igst?: number
+          issue_date?: string
+          lead_id?: string | null
+          notes?: string | null
+          org_id?: string
+          pincode?: string | null
+          project_id?: string | null
+          quotation_number?: string
+          sgst?: number
+          state?: string | null
+          status?: Database["public"]["Enums"]["quotation_status"]
+          subsidy_amount?: number
+          subtotal?: number
+          system_type?: string | null
+          terms?: string | null
+          total?: number
+          updated_at?: string
+          valid_until?: string | null
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
@@ -643,6 +968,13 @@ export type Database = {
         | "commissioned"
         | "on_hold"
         | "cancelled"
+      quotation_status:
+        | "draft"
+        | "sent"
+        | "accepted"
+        | "rejected"
+        | "expired"
+        | "converted"
       subscription_plan: "basic" | "pro" | "enterprise"
     }
     CompositeTypes: {
@@ -807,6 +1139,14 @@ export const Constants = {
         "commissioned",
         "on_hold",
         "cancelled",
+      ],
+      quotation_status: [
+        "draft",
+        "sent",
+        "accepted",
+        "rejected",
+        "expired",
+        "converted",
       ],
       subscription_plan: ["basic", "pro", "enterprise"],
     },
