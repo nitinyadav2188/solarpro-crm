@@ -403,6 +403,89 @@ export type Database = {
           },
         ]
       }
+      lead_submissions: {
+        Row: {
+          aadhaar_path: string | null
+          address: string | null
+          annual_gross_income: number | null
+          annual_net_income: number | null
+          city: string | null
+          converted_lead_id: string | null
+          created_at: string
+          electricity_bill_path: string | null
+          email: string | null
+          full_name: string
+          house_tax_path: string | null
+          id: string
+          intake_token: string
+          ip_hash: string | null
+          mobile: string
+          notes: string | null
+          org_id: string
+          pan_path: string | null
+          pincode: string | null
+          state: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          aadhaar_path?: string | null
+          address?: string | null
+          annual_gross_income?: number | null
+          annual_net_income?: number | null
+          city?: string | null
+          converted_lead_id?: string | null
+          created_at?: string
+          electricity_bill_path?: string | null
+          email?: string | null
+          full_name: string
+          house_tax_path?: string | null
+          id?: string
+          intake_token: string
+          ip_hash?: string | null
+          mobile: string
+          notes?: string | null
+          org_id: string
+          pan_path?: string | null
+          pincode?: string | null
+          state?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          aadhaar_path?: string | null
+          address?: string | null
+          annual_gross_income?: number | null
+          annual_net_income?: number | null
+          city?: string | null
+          converted_lead_id?: string | null
+          created_at?: string
+          electricity_bill_path?: string | null
+          email?: string | null
+          full_name?: string
+          house_tax_path?: string | null
+          id?: string
+          intake_token?: string
+          ip_hash?: string | null
+          mobile?: string
+          notes?: string | null
+          org_id?: string
+          pan_path?: string | null
+          pincode?: string | null
+          state?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lead_submissions_org_id_fkey"
+            columns: ["org_id"]
+            isOneToOne: false
+            referencedRelation: "organizations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       leads: {
         Row: {
           address: string | null
@@ -517,13 +600,16 @@ export type Database = {
           email: string | null
           gstin: string | null
           id: string
+          intake_token: string | null
           logo_url: string | null
           name: string
+          pan: string | null
           phone: string | null
           pincode: string | null
           plan: Database["public"]["Enums"]["subscription_plan"]
           state: string | null
           updated_at: string
+          website: string | null
         }
         Insert: {
           address?: string | null
@@ -532,13 +618,16 @@ export type Database = {
           email?: string | null
           gstin?: string | null
           id?: string
+          intake_token?: string | null
           logo_url?: string | null
           name: string
+          pan?: string | null
           phone?: string | null
           pincode?: string | null
           plan?: Database["public"]["Enums"]["subscription_plan"]
           state?: string | null
           updated_at?: string
+          website?: string | null
         }
         Update: {
           address?: string | null
@@ -547,13 +636,16 @@ export type Database = {
           email?: string | null
           gstin?: string | null
           id?: string
+          intake_token?: string | null
           logo_url?: string | null
           name?: string
+          pan?: string | null
           phone?: string | null
           pincode?: string | null
           plan?: Database["public"]["Enums"]["subscription_plan"]
           state?: string | null
           updated_at?: string
+          website?: string | null
         }
         Relationships: []
       }
@@ -932,6 +1024,17 @@ export type Database = {
       is_org_member: {
         Args: { _org_id: string; _user_id: string }
         Returns: boolean
+      }
+      org_id_from_intake_token: { Args: { _token: string }; Returns: string }
+      org_public_profile: {
+        Args: { _token: string }
+        Returns: {
+          city: string
+          id: string
+          logo_url: string
+          name: string
+          state: string
+        }[]
       }
     }
     Enums: {
