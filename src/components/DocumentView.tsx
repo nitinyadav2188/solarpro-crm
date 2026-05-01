@@ -19,7 +19,7 @@ export interface DocPayload {
   issue_date: string;
   valid_until?: string | null;
   due_date?: string | null;
-  org: { name: string; gstin?: string | null; address?: string | null; city?: string | null; state?: string | null; pincode?: string | null; phone?: string | null; email?: string | null };
+  org: { name: string; gstin?: string | null; pan?: string | null; address?: string | null; city?: string | null; state?: string | null; pincode?: string | null; phone?: string | null; email?: string | null; website?: string | null; logo_url?: string | null };
   customer: { name: string; gstin?: string | null; address?: string | null; phone?: string | null; email?: string | null };
   capacity_kw?: number | null;
   system_type?: string | null;
@@ -71,9 +71,13 @@ export default function DocumentView({ doc }: { doc: DocPayload }) {
         {/* Header */}
         <div className="border-b-2 border-[hsl(158_78%_17%)] pb-4 mt-4 flex items-start justify-between gap-6">
           <div className="flex items-start gap-3">
-            <div className="grid h-14 w-14 place-items-center rounded-md bg-[hsl(158_78%_17%)] text-white">
-              <Sun className="h-7 w-7" />
-            </div>
+            {doc.org.logo_url ? (
+              <img src={doc.org.logo_url} alt="" className="h-14 w-14 object-contain rounded-md border border-border bg-white" />
+            ) : (
+              <div className="grid h-14 w-14 place-items-center rounded-md bg-[hsl(158_78%_17%)] text-white">
+                <Sun className="h-7 w-7" />
+              </div>
+            )}
             <div>
               <div className="font-display text-2xl">{doc.org.name}</div>
               {doc.org.address && <div className="text-xs text-muted-foreground">{doc.org.address}</div>}
@@ -83,8 +87,12 @@ export default function DocumentView({ doc }: { doc: DocPayload }) {
               <div className="text-xs mt-0.5">
                 {doc.org.phone && <span>📞 {doc.org.phone} </span>}
                 {doc.org.email && <span> · ✉️ {doc.org.email}</span>}
+                {doc.org.website && <span> · 🌐 {doc.org.website}</span>}
               </div>
-              {doc.org.gstin && <div className="text-xs font-mono mt-0.5">GSTIN: {doc.org.gstin}</div>}
+              <div className="text-xs font-mono mt-0.5 flex gap-3 flex-wrap">
+                {doc.org.gstin && <span>GSTIN: {doc.org.gstin}</span>}
+                {doc.org.pan && <span>PAN: {doc.org.pan}</span>}
+              </div>
             </div>
           </div>
           <div className="text-right">

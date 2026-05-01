@@ -14,7 +14,10 @@ import Quotations from "./pages/Quotations";
 import Invoices from "./pages/Invoices";
 import Payments from "./pages/Payments";
 import Inventory from "./pages/Inventory";
-import { Documents, Compliance, Analytics, Settings } from "./pages/Stubs";
+import { Documents, Compliance, Analytics } from "./pages/Stubs";
+import Settings from "./pages/Settings";
+import IntakeSubmissions from "./pages/IntakeSubmissions";
+import PublicIntake from "./pages/PublicIntake";
 import Blog from "./pages/Blog";
 import GovernmentSchemes from "./pages/GovernmentSchemes";
 import NotFound from "./pages/NotFound.tsx";
@@ -34,9 +37,11 @@ const App = () => (
           <Route path="/blog/:slug" element={<Blog />} />
           <Route path="/schemes" element={<GovernmentSchemes />} />
           <Route path="/schemes/:slug" element={<GovernmentSchemes />} />
+          <Route path="/intake/:token" element={<PublicIntake />} />
           <Route path="/app" element={<AppLayout />}>
             <Route index element={<Dashboard />} />
             <Route path="leads" element={<Leads />} />
+            <Route path="intake" element={<IntakeSubmissions />} />
             <Route path="projects" element={<Projects />} />
             <Route path="quotations" element={<Quotations />} />
             <Route path="invoices" element={<Invoices />} />
