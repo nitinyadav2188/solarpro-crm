@@ -314,8 +314,10 @@ export type Database = {
           created_at: string
           created_by: string | null
           customer_address: string | null
+          customer_email: string | null
           customer_gstin: string | null
           customer_name: string
+          customer_phone: string | null
           discount: number
           due_date: string | null
           gst_rate: number
@@ -340,8 +342,10 @@ export type Database = {
           created_at?: string
           created_by?: string | null
           customer_address?: string | null
+          customer_email?: string | null
           customer_gstin?: string | null
           customer_name: string
+          customer_phone?: string | null
           discount?: number
           due_date?: string | null
           gst_rate?: number
@@ -366,8 +370,10 @@ export type Database = {
           created_at?: string
           created_by?: string | null
           customer_address?: string | null
+          customer_email?: string | null
           customer_gstin?: string | null
           customer_name?: string
+          customer_phone?: string | null
           discount?: number
           due_date?: string | null
           gst_rate?: number
