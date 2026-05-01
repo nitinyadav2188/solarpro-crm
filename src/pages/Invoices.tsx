@@ -109,6 +109,8 @@ export default function Invoices() {
       org_id: ctx.orgId,
       invoice_number: form.invoice_number,
       customer_name: form.customer_name,
+      customer_phone: form.customer_phone || null,
+      customer_email: form.customer_email || null,
       customer_gstin: form.customer_gstin || null,
       customer_address: form.customer_address || null,
       subtotal: totals.subtotal, cgst: totals.cgst, sgst: totals.sgst, igst: totals.igst,
@@ -144,8 +146,8 @@ export default function Invoices() {
     if (!inv || !org) return toast.error("Could not load invoice");
     setPreviewDoc({
       kind: "TAX INVOICE", number: inv.invoice_number, issue_date: inv.issue_date, due_date: inv.due_date,
-      org: { name: org.name, gstin: org.gstin, address: org.address, city: org.city, state: org.state, pincode: org.pincode, phone: org.phone, email: org.email },
-      customer: { name: inv.customer_name, gstin: inv.customer_gstin, address: inv.customer_address, phone: null, email: null },
+      org: { name: org.name, gstin: org.gstin, address: org.address, city: org.city, state: org.state, pincode: org.pincode, phone: org.phone, email: org.email, logo_url: org.logo_url, pan: (org as any).pan, website: (org as any).website },
+      customer: { name: inv.customer_name, gstin: inv.customer_gstin, address: inv.customer_address, phone: (inv as any).customer_phone, email: (inv as any).customer_email },
       capacity_kw: null, system_type: null,
       items: (its ?? []) as any,
       gst_type: (inv.gst_type as any) ?? "intra", gst_rate: inv.gst_rate ?? 18,
@@ -177,8 +179,9 @@ export default function Invoices() {
               <legend className="text-xs uppercase tracking-wider text-muted-foreground px-1">Bill to</legend>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 <F label="Name *"><Input required value={form.customer_name} onChange={(e) => setForm({...form, customer_name: e.target.value})} /></F>
-                <F label="GSTIN"><Input value={form.customer_gstin} onChange={(e) => setForm({...form, customer_gstin: e.target.value})} className="font-mono uppercase" /></F>
+                <F label="GSTIN"><Input value={form.customer_gstin} onChange={(e) => setForm({...form, customer_gstin: e.target.value.toUpperCase()})} className="font-mono uppercase" maxLength={15} /></F>
                 <F label="Phone"><Input value={form.customer_phone} onChange={(e) => setForm({...form, customer_phone: e.target.value})} /></F>
+                <F label="Email"><Input type="email" value={form.customer_email} onChange={(e) => setForm({...form, customer_email: e.target.value})} /></F>
               </div>
               <F label="Address"><Input value={form.customer_address} onChange={(e) => setForm({...form, customer_address: e.target.value})} /></F>
             </fieldset>
