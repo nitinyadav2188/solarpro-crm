@@ -160,7 +160,7 @@ export default function Quotations() {
     if (!q || !org) return toast.error("Could not load quotation");
     setPreviewDoc({
       kind: "QUOTATION", number: q.quotation_number, issue_date: q.issue_date, valid_until: q.valid_until,
-      org: { name: org.name, gstin: org.gstin, address: org.address, city: org.city, state: org.state, pincode: org.pincode, phone: org.phone, email: org.email },
+      org: { name: org.name, gstin: org.gstin, address: org.address, city: org.city, state: org.state, pincode: org.pincode, phone: org.phone, email: org.email, logo_url: org.logo_url, pan: (org as any).pan, website: (org as any).website },
       customer: { name: q.customer_name, gstin: q.customer_gstin, address: [q.customer_address, q.city, q.state, q.pincode].filter(Boolean).join(", "), phone: q.customer_phone, email: q.customer_email },
       capacity_kw: q.capacity_kw, system_type: q.system_type,
       items: (its ?? []) as any,
