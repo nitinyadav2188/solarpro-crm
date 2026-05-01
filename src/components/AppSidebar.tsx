@@ -1,7 +1,7 @@
 import { NavLink, useLocation } from "react-router-dom";
 import {
   LayoutDashboard, Users, FolderKanban, Receipt, Wallet,
-  Boxes, FileText, Landmark, BarChart3, Settings, Sun, FileSignature, BookOpen,
+  Boxes, FileText, Landmark, BarChart3, Settings, Sun, FileSignature, BookOpen, Inbox,
 } from "lucide-react";
 import {
   Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent,
@@ -19,6 +19,7 @@ interface NavItem {
 
 const main: NavItem[] = [
   { title: "Dashboard", url: "/app", icon: LayoutDashboard },
+  { title: "Intake", url: "/app/intake", icon: Inbox, roles: ["owner", "sales"] },
   { title: "Leads", url: "/app/leads", icon: Users, roles: ["owner", "sales"] },
   { title: "Projects", url: "/app/projects", icon: FolderKanban },
 ];
